@@ -2,6 +2,13 @@ $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require 'capistrano'
 require 'bundler/capistrano'
 
+# Use our ruby-1.9.2-p290@my_site gemset
+default_environment["PATH"]         = "/usr/share/ruby-rvm/gems/ruby-1.9.2-p290/bin:/usr/share/ruby-rvm/gems/ruby-1.9.2-p290global/bin:/usr/share/ruby-rvm/rubies/ruby-1.9.2-p290/bin:/usr/share/ruby-rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
+default_environment["GEM_HOME"]     = "/usr/share/ruby-rvm/gems/ruby-1.9.2-p290"
+default_environment["GEM_PATH"]     = "/usr/share/ruby-rvm/gems/ruby-1.9.2-p290:/usr/share/ruby-rvm/gems/ruby-1.9.2-p290@global"
+default_environment["RUBY_VERSION"] = "ruby-1.9.2-p290"
+
+#default_run_options[:shell] = 'bash'
 
 
 set :application, "sample_app"
@@ -30,15 +37,8 @@ set(:current_revision)  { capture("cd #{current_path}; git rev-parse --short HEA
 set(:latest_revision)   { capture("cd #{current_path}; git rev-parse --short HEAD").strip }
 set(:previous_revision) { capture("cd #{current_path}; git rev-parse --short HEAD@{1}").strip }
 
-default_environment["RAILS_ENV"] = 'production'
+#default_environment["RAILS_ENV"] = 'production'
 
-# Use our ruby-1.9.2-p290@my_site gemset
-default_environment["PATH"]         = "/usr/share/ruby-rvm/gems/ruby-1.9.2-p290/bin:$PATH"
-default_environment["GEM_HOME"]     = "/usr/share/ruby-rvm/gems/ruby-1.9.2-p290"
-default_environment["GEM_PATH"]     = "/usr/share/ruby-rvm/gems/ruby-1.9.2-p290:/usr/share/ruby-rvm/gems/ruby-1.9.2-p290@global"
-default_environment["RUBY_VERSION"] = "ruby-1.9.2-p290"
-
-#default_run_options[:shell] = 'bash'
 
 
 

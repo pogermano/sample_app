@@ -111,6 +111,7 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano
+  json (= 1.6.3)
   rails (= 3.0.11)
   rspec-rails (= 2.6.1)
   sqlite3 (= 1.3.3)
